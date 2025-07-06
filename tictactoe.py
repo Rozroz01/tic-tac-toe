@@ -5,7 +5,7 @@ currentPlayer = "X"
 winner = None
 gameRunning = True
 
-# printing the game board
+# Print the game board
 
 
 def printBoard(board):
@@ -16,7 +16,7 @@ def printBoard(board):
     print(board[6] + " | " + board[7] + " | " + board[8])
 
 
-# take player input
+# Recieve player input
 def playerInput(board):
     inp = int(input("Enter a number between 1-9: "))
     if inp >= 1 and inp <= 9 and board[inp-1] == "-":
@@ -69,6 +69,15 @@ def checkTie(board):
         printBoard(board)
         print("It's a tie!")
         gameRunning = False
+
+
+# Switch player
+def switchPlayer():
+    global currentPlayer
+    if currentPlayer == "X":
+        currentPlayer = "O"
+    else:
+        currentPlayer = "X"
 
 
 while gameRunning:
