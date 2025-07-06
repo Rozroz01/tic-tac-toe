@@ -1,3 +1,6 @@
+import random
+
+
 board = ["-", "-", "-",
          "-", "-", "-",
          "-", "-", "-"]
@@ -18,8 +21,7 @@ def printBoard(board):
 
 # Recieve player input
 def playerInput(board):
-    inp = int(
-        input(f'\n"{currentPlayer}" is playing: Enter a number between 1-9: '))
+    inp = int(input("Enter a number between 1-9: "))
     if inp >= 1 and inp <= 9 and board[inp-1] == "-":
         board[inp-1] = currentPlayer
     else:
@@ -89,9 +91,21 @@ def switchPlayer():
         currentPlayer = "X"
 
 
+# Play against computer
+def computerMove(board):
+    while currentPlayer == "O":
+        position = random.randint(0, 8)
+        if board[position] == "-":
+            board[position] = currentPlayer
+            switchPlayer()
+
+
 while gameRunning:
     printBoard(board)
     playerInput(board)
     checkWin()
     checkTie(board)
     switchPlayer()
+    computerMove(board)
+    checkWin()
+    checkTie(board)
